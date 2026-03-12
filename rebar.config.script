@@ -130,8 +130,9 @@ PortOpts = fun() ->
                                 [
                                  {"priv/re2_nif.so", ["c_src/re2_nif.cc"]}
                                 ]},
-                   BaseCFLAGS = "$DRV_CFLAGS -std=c++11 " ++
-                        ExtraCFLAGS ++ " " ++ Flags ++ " ",
+                   AbslCFlags = string:trim(os:cmd("pkg-config --cflags-only-I absl_base 2>/dev/null")),
+                   BaseCFLAGS = "$DRV_CFLAGS -std=c++17 " ++
+                        ExtraCFLAGS ++ " " ++ Flags ++ " " ++ AbslCFlags ++ " ",
                    Hooks = [ {pre_hooks,
                               [{{pc, compile}, "sh -c c_src/build_deps.sh"}]}
                            , {post_hooks,
