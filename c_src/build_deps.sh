@@ -67,7 +67,7 @@ case "$1" in
                 cp $LIB $LIBRE2
             )
         else
-            CXXFLAGS="-Wall -O3 -fPIC -pthread -std=c++11"
+            CXXFLAGS="-Wall -O3 -fPIC -pthread -std=c++17"
             CXX="${CXX:-c++}"
             type gmake 1>/dev/null 2>/dev/null && MAKE=gmake
             MAKE=${MAKE:-make}
